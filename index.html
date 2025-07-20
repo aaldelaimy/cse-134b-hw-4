@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ayoob Al-Delaimy's Portfolio</title>
 
+    <link rel="stylesheet" href="main.css">
     <link rel="icon" href="assets/favicon.ico">
 
     <meta
@@ -42,11 +43,23 @@
     <main>
       <figure>
         <picture>
-          <source srcset="assets/images/profile.JPG">
+          <!-- Large screens with high DPI -->
+          <source 
+            srcset="assets/images/profile.JPG 1x, assets/images/profile.JPG 2x" 
+            media="(min-width: 1200px)">
+          <!-- Medium screens -->
+          <source 
+            srcset="assets/images/profile.JPG 1x, assets/images/profile.JPG 2x" 
+            media="(min-width: 768px) and (max-width: 1199px)">
+          <!-- Small screens -->
+          <source 
+            srcset="assets/images/profile.JPG 1x, assets/images/profile.JPG 2x" 
+            media="(max-width: 767px)">
+          <!-- Fallback for older browsers -->
           <img
             src="assets/images/profile.JPG"
-            alt="Profile Picture"
-            style="width: 200px; height: auto"
+            alt="Profile picture of Ayoob Al-Delaimy, a Computer Engineering student with a professional headshot"
+            style="width: 200px; height: 200px; object-fit: cover; object-position: center"
           >
         </picture>
         <figcaption>Photo of Ayoob Al-Delaimy, aspiring engineer</figcaption>
@@ -121,27 +134,7 @@
         />
       </svg>
 
-      <canvas
-        id="circleCanvas"
-        width="100"
-        height="100"
-        style="border: 1px solid black"
-      >
-        Your browser does not support the canvas element.
-      </canvas>
-
-      <hello-console></hello-console>
     </main>
-
-    <script>
-      class HelloConsole extends HTMLElement {
-        constructor() {
-          super();
-          console.log("Hello world!");
-        }
-      }
-      customElements.define("hello-console", HelloConsole);
-    </script>
 
     <footer>
         <address>
@@ -152,21 +145,6 @@
             >linkedin.com/in/ayoobaldelaimy</a
           >
         </address>
-
-      <noscript
-        >Your browser does not support JavaScript or it is disabled.</noscript
-      >
     </footer>
-
-    <script>
-      const canvas = document.getElementById("circleCanvas");
-      const ctx = canvas.getContext("2d");
-      ctx.beginPath();
-      ctx.arc(50, 50, 40, 0, 2 * Math.PI);
-      ctx.fillStyle = "orange";
-      ctx.fill();
-      ctx.strokeStyle = "black";
-      ctx.stroke();
-    </script>
   </body>
 </html>
