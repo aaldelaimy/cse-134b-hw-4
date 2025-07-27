@@ -22,7 +22,41 @@
         <h1>Ayoob Al-Delaimy</h1>
         <h2>Student | Developer</h2>
       </hgroup>
+    
+      <button id="theme-toggle" aria-label="Toggle dark/light mode" style="position: absolute; top: 1rem; right: 1rem;">
+        🌙 Dark Mode
+      </button>
 
+      <details id="custom-theme-settings" style="margin: 2rem auto; max-width: 400px; text-align: center;">
+        <summary>🎨 Custom Theme</summary>
+        <form id="theme-customizer" style="display: flex; flex-direction: column; gap: 1rem; margin-top: 1rem;">
+          <fieldset>
+            <legend>Theme Settings</legend>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <label for="bgColor" style="flex: 1; text-align: left; color: #333;">Background Color (changes page background):</label>
+              <input type="color" id="bgColor" value="#ffffff" style="width: 50px; height: 30px; border: 2px solid #ccc; border-radius: 4px;" />
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <label for="textColor" style="flex: 1; text-align: left; color: #333;">Text Color (changes all text on page):</label>
+              <input type="color" id="textColor" value="#000000" style="width: 50px; height: 30px; border: 2px solid #ccc; border-radius: 4px;" />
+            </div>
+            <div style="display: flex; align-items: center; gap: 1rem;">
+              <label for="fontFamily" style="flex: 1; text-align: left; color: #333;">Font:</label>
+              <select id="fontFamily" style="padding: 0.25rem; border: 2px solid #ccc; border-radius: 4px;">
+                <option value="'Inter', sans-serif">Inter</option>
+                <option value="Arial, sans-serif">Arial</option>
+                <option value="'Courier New', monospace">Courier New</option>
+                <option value="'Georgia', serif">Georgia</option>
+                <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+              </select>
+            </div>
+          </fieldset>
+          <button type="button" id="applyTheme" style="padding: 0.5rem; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer;">Apply Theme</button>
+        </form>
+        
+
+      </details>
+    
       <nav>
         <ul>
           <li><a href="index.html">Home</a></li>
@@ -30,32 +64,36 @@
           <li><a href="experiences.html">Experiences</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="resume.html">Resume</a></li>
+          <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
-
+    
       <form role="search">
         <label for="site-search">Search:</label>
         <input type="search" id="site-search" name="q">
         <button type="submit">Go</button>
       </form>
+    
+      <noscript>
+        <p style="text-align:center; background:#fee2e2; color:#b91c1c; padding:0.5rem;">
+          Theme toggle is unavailable because JavaScript is disabled.
+        </p>
+      </noscript>
     </header>
+    
 
     <main>
       <figure>
         <picture>
-          <!-- Large screens with high DPI -->
           <source 
             srcset="assets/images/profile.JPG 1x, assets/images/profile.JPG 2x" 
             media="(min-width: 1200px)">
-          <!-- Medium screens -->
           <source 
             srcset="assets/images/profile.JPG 1x, assets/images/profile.JPG 2x" 
             media="(min-width: 768px) and (max-width: 1199px)">
-          <!-- Small screens -->
           <source 
             srcset="assets/images/profile.JPG 1x, assets/images/profile.JPG 2x" 
             media="(max-width: 767px)">
-          <!-- Fallback for older browsers -->
           <img
             src="assets/images/profile.JPG"
             alt="Profile picture of Ayoob Al-Delaimy, a Computer Engineering student with a professional headshot"
@@ -147,4 +185,50 @@
         </address>
     </footer>
   </body>
+
+  <script>
+    const toggleBtn = document.getElementById("theme-toggle");
+    const savedTheme = localStorage.getItem("theme");
+  
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+      toggleBtn.textContent = "☀️ Light Mode";
+    }
+  
+    toggleBtn?.addEventListener("click", () => {
+      const isDark = document.documentElement.classList.toggle("dark");
+      toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    });
+  </script>
+
+  <script>
+    const applyBtn = document.getElementById("applyTheme");
+
+    applyBtn?.addEventListener("click", () => {
+      const bg = document.getElementById("bgColor").value;
+      const text = document.getElementById("textColor").value;
+      const font = document.getElementById("fontFamily").value;
+
+      // Apply CSS variables (matches your CSS file)
+      document.documentElement.style.setProperty("--bg", bg);
+      document.documentElement.style.setProperty("--text", text);
+      document.documentElement.style.setProperty("--font", font);
+
+
+    });
+
+    // Load on page load
+    window.addEventListener("DOMContentLoaded", () => {
+      // Set default values to current page colors
+      const currentBg = getComputedStyle(document.documentElement).getPropertyValue('--bg') || '#ffffff';
+      const currentText = getComputedStyle(document.documentElement).getPropertyValue('--text') || '#000000';
+      const currentFont = getComputedStyle(document.documentElement).getPropertyValue('--font') || 'Arial, sans-serif';
+      
+      document.getElementById("bgColor").value = currentBg;
+      document.getElementById("textColor").value = currentText;
+      document.getElementById("fontFamily").value = currentFont;
+    });
+  </script>
+  
 </html>

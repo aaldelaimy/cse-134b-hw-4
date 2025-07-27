@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact (HTML Validation)</title>
+  <link rel="stylesheet" href="main.css" />
+  <style>
+    .contact-form input:invalid,
+    .contact-form textarea:invalid {
+      border-color: red;
+    }
+
+    .contact-form input:valid,
+    .contact-form textarea:valid {
+      border-color: var(--accent);
+    }
+
+    .contact-form input:required,
+    .contact-form textarea:required {
+      background-color: #fefce8;
+    }
+
+    .contact-form input:optional,
+    .contact-form textarea:optional {
+      background-color: #f9fafb; 
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ayoob Al-Delaimy</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="experiences.html">Experiences</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="resume.html">Resume</a></li>
+        <li><a href="form-no-js.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2>Contact</h2>
+
+    <form action="https://httpbin.org/post" method="post" class="contact-form">
+      <input type="hidden" name="possible_bot" value="true" />
+
+      <div class="form-group">
+        <label for="name">Name <span aria-hidden="true">*</span></label>
+        <input id="name" name="name" type="text" required minlength="2" maxlength="50" pattern="[a-zA-Z\s]+" />
+        <output class="error" name="error-name" for="name"></output>
+        <output class="info" name="info-name"></output>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email <span aria-hidden="true">*</span></label>
+        <input id="email" name="email" type="email" required />
+        <output class="error" name="error-email" for="email"></output>
+        <output class="info" name="info-email"></output>
+      </div>
+
+      <div class="form-group">
+        <label for="comments">Comments <span aria-hidden="true">*</span></label>
+        <textarea id="comments" name="comments" rows="4" required minlength="10" maxlength="300"></textarea>
+        <output class="error" name="error-comments" for="comments"></output>
+        <output class="info" name="info-comments"></output>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </main>
+
+  <footer></footer>
+</body>
+</html>

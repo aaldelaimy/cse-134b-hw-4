@@ -1,4 +1,3 @@
-/* CSS Variables */
 :root {
   --primary: #6366f1;
   --primary-dark: #4f46e5;
@@ -20,6 +19,18 @@
   
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   --shadow-lg: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+html.dark {
+  --primary: #93c5fd;
+  --primary-dark: #60a5fa;
+  --accent: #34d399;
+  --text: #e5e7eb;
+  --text-light: #9ca3af;
+  --white: #1f2937;
+  --bg: #111827;
+  --surface: #1f2937;
+  --border: #374151;
 }
 
 /* Custom Fonts */
@@ -599,4 +610,84 @@ mark {
   th, td {
     padding: var(--small);
   }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 500px;
+    margin: 2rem auto;
+    padding: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background-color: var(--white);
+    box-shadow: var(--shadow);
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .form-group label span {
+    color: red;
+    margin-left: 0.25rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    padding: 0.5rem;
+    font: inherit;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+  }
+  
+  .form-group output {
+    font-size: 0.85rem;
+    margin-top: 0.3rem;
+  }
+  
+  .form-group .error {
+    color: red;
+  }
+  
+  .form-group .info {
+    color: green;
+  }
+  
+  .contact-form button {
+    align-self: start;
+    padding: 0.6rem 1.2rem;
+    background-color: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .contact-form button:hover {
+    background-color: #059669;
+  }
+  
+}
+
+
+
+/* === Custom Theme Support (Extra Credit) === */
+:root {
+  --user-bg-color: var(--bg);
+  --user-text-color: var(--text);
+  --user-font-family: var(--font);
+}
+
+body {
+  background-color: var(--user-bg-color);
+  color: var(--user-text-color);
+  font-family: var(--user-font-family);
 }
